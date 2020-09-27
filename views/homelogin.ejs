@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include("partial/navbar.ejs") %>
+    <h1> Login Acount </h1>
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <% if(error) { %>
+            <% error.map(el => { %>
+            <p style="color: red;"><%= el %></p>
+
+            <% }) %>
+
+            <% } %>
+            <form action="/users/login" method="post">
+                <div>
+                    <label for="username">username</label><br>
+                    <input type="text" name="username"><br>
+                </div>
+                <div>
+                    <label for="password">passowrd</label><br>
+                    <input type="password" name="password" id="passowrd"><br><br>
+                </div>
+
+                <button>Login</button>
+
+            </form>
+        </div>
+    </div>
+
+
+</body>
+
+</html>
