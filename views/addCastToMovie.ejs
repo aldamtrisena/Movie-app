@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include("partial/navbarlogin.ejs") %>
+    <div class="jumbroton">
+        <form action="/cast/addcast/<%= data.id %>" method="post">
+            <div>
+                <input class="col-sm-2 col-form-label" type="text" value="<%= data.name %>" readonly>
+            </div>
+            <div>
+                <label for="">Cast</label><br>
+                <select name="id" id="genre">
+                    <% cast.map(el=> { %>
+                    <option value="<%= el.id %>"><%= el.getFullName() %></option>
+                    <% }) %>
+                </select>
+                <br><br>
+            </div>
+            <div>
+                <label for="inputEmail3" class="col-sm-2 col-form-label"> Role :</label>
+                <div class="col-sm-10">
+                    <div>
+                        <input type="text" id="inputEmail3" name="role" placeholder="e.g Pemeran utama Waria">
+                    </div>
+                </div>
+                <br><br>
+                <button> Add </button>
+                <button><a href="/movies">Cancel</a></button>
+            </div>
+        </form>
+    </div>
+    <!-- table cast dan Role -->
+    <div class="table-responsive-sm position-sticky">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th scope="col">Name</th>
+                    <th scope="col">Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+
+                    <%data.Casts.map(el => { %>
+                    <td class="table-primary"><%= el.getFullName() %></td>
+                    <td><%= el.MovieCast.role%></td>
+
+                </tr>
+
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

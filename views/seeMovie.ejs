@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <%- include("partial/navbarlogin.ejs") %>
+
+    <div>
+        <input class="col-sm-2 col-form-label" type="text" value="<%= data.getFullName() %>" readonly>
+    </div>
+
+
+    <div class="table-responsive-sm position-sticky">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Movie</th>
+                    <th scope="col">Release year</th>
+                    <th scope="col">Age When Movie Release</th>
+                    <th scope="col">Role</th>
+                </tr>
+            </thead>
+            <tbody>
+                <% data.Movies.map(el => { %>
+                <tr>
+                    <td class="table-primary"><%=el.name%></td>
+                    <td> <%=el.released_year%> </td>
+                    <td><%=el.released_year - data.birth_year%> </td>
+                    <td> <%=el.MovieCast.role%> </td>
+                </tr>
+
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>

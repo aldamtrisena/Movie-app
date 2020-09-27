@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Document</title>
+</head>
+
+<body>
+    <%- include("partial/navbarlogin.ejs") %>
+    <div>
+        <%if(error){ %>
+        <%error.map(el=>{ %>
+        <p style=><%=el  %></p>
+        <% }) %>
+        <% } %>
+    </div>
+    <div class="jumbotron">
+        <form action="/movies/edit/<%= data[0].id %>" method="post">
+            <div>
+                <label for="name">name</label><br>
+                <input type="text" name="name" value="<%= data[0].name %>"><br><br>
+            </div>
+
+            <div>
+                <label for="released_year">year</label><br>
+                <input type="number" name="released_year" value="<%= data[0].released_year %>"><br><br>
+            </div>
+
+            <div>
+                <label for="">Genre</label><br>
+                <select name="genre" id="genre">
+                    <option value="animation" <%= data[0].genre === "animation" ? "selected" : "" %>>animation</option>
+                    <option value="comedy" <%= data[0].genre === "comedy" ? "selected" : "" %>>comedy</option>
+                    <option value="drama" <%= data[0].genre === "drama" ? "selected" : "" %>>drama</option>
+                    <option value="horor" <%= data[0].genre === "horor" ? "selected" : "" %>>horor</option>
+                    <option value="religius" <%= data[0].genre === "religius" ? "selected" : "" %>>religius</option>
+                    <option value="thriller" <%= data[0].genre === "thriller" ? "selected" : "" %>>thriller</option>
+                </select>
+                <br><br>
+            </div>
+            <div>
+                <label for="">Production House : </label><br>
+                <select name="ProductionHouseId" id="genre">
+
+                    <%data.map(el => { %>
+                    <option value="" <%= el.ProductionHouse.name === "" ? "selected" : "" %>> --Select--- </option>
+                    <option value="<%= phouse[4].id %>"
+                        <%= el.ProductionHouse.name === "Paramount Pictures" ? "selected" : "" %>> Paramount Pictures
+                    </option>
+                    <option value="<%= phouse[1].id%>" <%= el.ProductionHouse.name === "Pixar" ? "selected" : "" %>>
+                        Pixar</option>
+                    <option value="<%= phouse[3].id %>"
+                        <%= el.ProductionHouse.name === "Universal Pictures" ? "selected" : "" %>>Universal Pictures
+                    </option>
+                    <option value="<%= phouse[0].id %>"
+                        <%= el.ProductionHouse.name === "Walt Disney Studios" ? "selected" : "" %>>Walt Disney Studios
+                    </option>
+                    <option value="<%= phouse[2].id %>"
+                        <%= el.ProductionHouse.name === "Warner Bros" ? "selected" : "" %>>Warner Bros</option>
+                    <% }) %>
+                </select>
+
+                <br><br>
+            </div>
+
+            <div>
+                <button> Edit </button>
+                <button><a href="/movies">Cancel</a></button>
+            </div>
+        </form>
+    </div>
+</body>
+
+</html>

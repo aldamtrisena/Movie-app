@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+        integrity="sha384-JcKb8q3iqJ61gNV9KGb8thSsNjpSL0n8PARn9HuZOnIxN0hoP+VmmDGMN5t9UJ0Z" crossorigin="anonymous">
+    <title>Document</title>
+</head>
+
+<body>
+
+    <%- include("partial/navbarlogin.ejs") %>
+    <h1>Movies List</h1>
+
+    <a href="/movies/add">Add Movies</a>
+    <div class="table-responsive-sm position-sticky">
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Movie</th>
+                    <th scope="col">Released Year</th>
+                    <th scope="col">Genre</th>
+                    <th scope="col">Production House</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <%data.map(el => { %>
+                <tr>
+                    <td class="table-primary"><%= el.name %></td>
+                    <td><%= el.released_year %></td>
+                    <td><%= el.genre %></td>
+                    <td><%= el.ProductionHouse.name%></td>
+                    <td>
+                        <button type="button" class=" btn btn-primary btn-lg"> <a href="/movies/edit/<%= el.id %>"
+                                class="text-warning">Edit</a> </button>
+
+                        <button type="button" class="btn btn-danger btn-lg"> <a
+                                href="/movies/delete/<%= el.id %>">Delete</a> </button>
+                        <button type="button" class="btn btn-danger btn-lg"> <a href="/cast/addcast/<%= el.id %>">Add
+                                Cast</a> </button>
+                    </td>
+                </tr>
+                <% }) %>
+            </tbody>
+        </table>
+    </div>
+</body>
+
+</html>
